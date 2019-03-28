@@ -46,13 +46,21 @@ func offsetAgeFromUser(currentUser user: Users, offset: Int = 0) -> Users{
 }
 
 do{
-    let ageOffset = -1;
+    var ageOffset = -1
     var user = try Users(name: readUserName(), age: readUserAge())
     print("Hello \(user.name)!")
     print("You are \(user.age) years of age!")
     print("In \(ageOffset) years, you will be \(offsetAge(ageNow: user.age, ageOffset)) years of age!")
-    user = offsetAgeFromUser(currentUser: user, offset: 10)
-    print("\(user.name) is \(user.age) years old now!")
+    
+    ageOffset = 10
+    user = offsetAgeFromUser(currentUser: user, offset: ageOffset)
+    print("Fast forwarding \(ageOffset) years.... \n\(user.name) is \(user.age) years old now!")
+    
+    ageOffset = -5
+    print("Using the instance function now.")
+    user.incrementDecrementAge(ageOffset: ageOffset)
+    print("\(user.getName()) is \(user.getAge()) years now!")
+    print("The end.")
 }catch CustomErrors.runtimeError(let error_msg){
     print(error_msg)
 }

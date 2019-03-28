@@ -41,4 +41,8 @@ class Users{
         self.age = age
     }
     
+    func incrementDecrementAge(ageOffset offset: Int){
+        self.age += offset
+    }
+    
 }
