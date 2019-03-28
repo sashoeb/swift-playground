@@ -32,10 +32,8 @@ func readUserAge() throws -> Int{
     return userAge!
 }
 
-func offsetAge(ageNow age: Int, _ offset: Int = 0) -> Int{
-    var calculatedAge: Int
-    calculatedAge = age + offset;
-    return calculatedAge
+func offsetAge(ageNow age: inout Int, _ offset: Int = 0) -> Int{
+    return age + offset
 }
 
 func offsetAgeFromUser(currentUser user: Users, offset: Int = 0) -> Users{
@@ -50,7 +48,7 @@ do{
     var user = try Users(name: readUserName(), age: readUserAge())
     print("Hello \(user.name)!")
     print("You are \(user.age) years of age!")
-    print("In \(ageOffset) years, you will be \(offsetAge(ageNow: user.age, ageOffset)) years of age!")
+    print("In \(ageOffset) years, you will be \(offsetAge(ageNow: &user.age, ageOffset)) years of age!")
     
     ageOffset = 10
     user = offsetAgeFromUser(currentUser: user, offset: ageOffset)
